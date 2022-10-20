@@ -3,6 +3,6 @@ module com.example.sort_actual {
     requires javafx.fxml;
 
 
-    opens com.example.sort_actual to javafx.fxml;
-    exports com.example.sort_actual;
+    opens volpe.kennedy.sort_actual to javafx.fxml;
+    exports volpe.kennedy.sort_actual;
 }

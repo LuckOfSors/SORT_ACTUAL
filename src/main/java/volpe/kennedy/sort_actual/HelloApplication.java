@@ -1,4 +1,4 @@
-package com.example.sort_actual;
+package volpe.kennedy.sort_actual;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
