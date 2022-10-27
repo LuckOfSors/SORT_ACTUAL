@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import java.util.Scanner;
+
 import java.net.URLEncoder;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
