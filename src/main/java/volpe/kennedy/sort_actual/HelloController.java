@@ -87,6 +87,12 @@ public class HelloController {
         }
         System.out.println(Arrays.toString(movieArray));
     }
+
+    @FXML
+    public void callMerge(ActionEvent event) throws IOException{
+        mergeSort(movieArray, 0, movieArray.length);
+    }
+
     private static void merge(String[] array, int first, int numLe1, int numLe2)
     {
         String[] tempArr = new String[numLe1 + numLe2];
@@ -112,7 +118,7 @@ public class HelloController {
 
     }
 
-    public static void mergesort(String[] array, int first, int length) {
+    public static void mergeSort(String[] array, int first, int length) {
         int len1 = 0;
         int len2 = 0;
 
@@ -120,8 +126,8 @@ public class HelloController {
             len1 = length/2;
             len2 = length-len1;
 
-            mergesort(array, first, len1);
-            mergesort(array, first + len1, len2);
+            mergeSort(array, first, len1);
+            mergeSort(array, first + len1, len2);
         }
 
         merge(array, first, len1, len2);
@@ -129,5 +135,7 @@ public class HelloController {
         for(String element: array)
             System.out.print(element +" ");
     }
+
+
 }
 
