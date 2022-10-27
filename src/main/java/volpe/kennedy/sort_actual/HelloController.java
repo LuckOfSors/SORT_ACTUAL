@@ -18,10 +18,23 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
+
+import java.util.Scanner;
+import java.net.URLEncoder;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+//JSON PARSING IMPORTS
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 
 public class HelloController {
 
-    ObservableList<String> sortList = FXCollections.observableArrayList("merge","insertion", "selection");
+    ObservableList<String> sortList = FXCollections.observableArrayList("merge", "insertion", "selection");
 
     String[] movieArray = {"Goodfellas", "Bermuda", "XX", "Rtx", "Wsa"};
 
@@ -48,16 +61,17 @@ public class HelloController {
     @FXML
     public void switchtoSort(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
     }
+
     @FXML
     public void switchtoSearch(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("welcome.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -93,15 +107,14 @@ public class HelloController {
         mergeSort(movieArray, 0, movieArray.length);
     }
 
-    private static void merge(String[] array, int first, int numLe1, int numLe2)
-    {
+
+    private static void merge(String[] array, int first, int numLe1, int numLe2) {
         String[] tempArr = new String[numLe1 + numLe2];
         int clone1 = 0;
         int clone2 = 0;
         int clone3 = 0;
 
-        while ((clone2 < numLe1) && (clone3 < numLe2))
-        {
+        while ((clone2 < numLe1) && (clone3 < numLe2)) {
             if (array[first + clone2].compareTo(array[first + numLe1 + clone3]) < 0)
                 tempArr[clone1++] = array[first + (clone2++)];
             else
@@ -122,9 +135,9 @@ public class HelloController {
         int len1 = 0;
         int len2 = 0;
 
-        if(length > 1) {
-            len1 = length/2;
-            len2 = length-len1;
+        if (length > 1) {
+            len1 = length / 2;
+            len2 = length - len1;
 
             mergeSort(array, first, len1);
             mergeSort(array, first + len1, len2);
@@ -132,10 +145,121 @@ public class HelloController {
 
         merge(array, first, len1, len2);
 
-        for(String element: array)
-            System.out.print(element +" ");
+        for (String element : array)
+            System.out.print(element + " ");
     }
 
 
+    public static String[] Management(){
+        Scanner input = new Scanner(System.in);
+                        System.out.println("What movies would you like to search for: ");
+        String x = input.next();
+                        input.close();
+
+        HttpResponse<String> response = Unirest.get("https://movie-database-alternative.p.rapidapi.com/?s=" + x + "&r=json&page=1")
+                .header("X-RapidAPI-Key", "0da6c9c507msh27d66d057973f0ep13289ajsnc1cd4d8defc8")
+                .header("X-RapidAPI-Host", "movie-database-alternative.p.rapidapi.com")
+                .asString();
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(response.getBody().toString());
+        String clean = gson.toJson(element);
+
+        Manage parse = new Manage();
+        String[] data = parse.Find(clean);
+
+        for(int z = 0;z<data.length;z++){
+            String temp = data[z];
+            if (temp[z] == '"') {
+
+
+            }
+
+        }
+    }
+
+
+
+
+    public String[] Find(String data){
+
+        //converting json into char array
+        char[] array = data.toCharArray();
+
+        //defining loop variables
+        int index = 0;
+        int len = array.length;
+        int placeholder = 0;
+
+        //creating char arr for item & creating string array to store items
+        char[] item = new char[len];
+        String[] placeList = new String[len];
+
+        //loop through data
+        for(int x=1;x<len;x++)
+        {
+            //if data starts with "{" start to loop
+            if(array[x]=='{'){
+                x++;
+                //if item within array isn't "}" or end of item continue to add arr[x] to item
+                while(x<len && array[x]!='}'){
+                    item[index] = array[x];
+                    x++;
+                    index++;
+                }
+                //Deleting null characters off of item
+                String item2 = String.valueOf(item).trim();
+                //placing item in item list
+                placeList[placeholder] = item2;
+
+                item  = new char[len];
+                index = 0;
+
+                placeholder++;
+            }
+        }
+        //Creating new String array
+        String[] dataList = new String[placeholder];
+
+        //removing null characters from string array
+        for(int x=0;x<placeholder;x++) {
+            if(placeList[x]!= null){
+                dataList[x] = placeList[x];
+            }
+        }
+        //print items of list;
+        for(int x=0;x<placeholder;x++) {
+            System.out.println(dataList[x]);
+        }
+
+        return dataList;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
