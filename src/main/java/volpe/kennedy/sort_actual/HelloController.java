@@ -1,5 +1,6 @@
 package volpe.kennedy.sort_actual;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -151,7 +152,7 @@ public class HelloController {
     }
 
 
-    public static String[] Management(){
+    public static String[] Management() throws UnirestException {
         Scanner input = new Scanner(System.in);
                         System.out.println("What movies would you like to search for: ");
         String x = input.next();
