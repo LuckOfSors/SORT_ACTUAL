@@ -150,7 +150,7 @@ public class HelloController {
     }
 
 
-    public static String[] Management(){
+    public static String[] Management() throws Exception{
         Scanner input = new Scanner(System.in);
                         System.out.println("What movies would you like to search for: ");
         String x = input.next();
