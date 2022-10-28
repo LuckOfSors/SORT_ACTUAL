@@ -17,12 +17,12 @@
             <Font name="Tw Cen MT" size="23.0" />
          </font>
       </Button>
-      <TableView id="unsorted" layoutX="8.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
+      <TableView id="unsorted" fx:id="unsorted" layoutX="8.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
         <columns>
           <TableColumn prefWidth="200" text="UNSORTED" />
         </columns>
       </TableView>
-      <TableView id="sorted" layoutX="386.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
+      <TableView id="sorted" fx:id="sorted" layoutX="386.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
          <columns>
             <TableColumn prefWidth="200" text="SORTED" />
          </columns>

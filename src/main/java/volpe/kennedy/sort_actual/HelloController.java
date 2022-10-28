@@ -36,7 +36,7 @@ public class HelloController {
     List<String> movieList = new ArrayList<String>();
 
 
-    String[] movieArray = Management();
+    //String[] movieArray = Management();
     String[] movieArray = {"Norm Of the North", "Ender's Game", "Bill and Ted's"};
     @FXML
     private Label welcomeText;
