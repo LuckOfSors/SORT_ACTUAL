@@ -10,16 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 
 import java.net.URLEncoder;
@@ -38,11 +33,18 @@ public class HelloController {
 
     ObservableList<String> sortList = FXCollections.observableArrayList("merge", "insertion", "selection");
 
-    String[] movieArray = {"Goodfellas", "Bermuda", "XX", "Rtx", "Wsa"};
+    List<String> movieList = new ArrayList<String>();
+
+
+    String[] movieArray = Management();
 
     @FXML
     private Label welcomeText;
+
+    private TableView unsorted;
+    private TableView sorted;
     private Stage stage;
+    private ComboBox combo;
 
     private Scene scene;
     private Parent root;
@@ -51,6 +53,9 @@ public class HelloController {
     @FXML
 
     private ChoiceBox choiceBox;
+
+    public HelloController() throws UnirestException {
+    }
 
     @FXML
     public void initialize() {
@@ -66,6 +71,7 @@ public class HelloController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+
         stage.show();
 
     }
@@ -77,17 +83,45 @@ public class HelloController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        printArrayUnsorted();
         //hdudhgf
 
     }
 
     @FXML
-    public void printArray(ActionEvent event) throws IOException {
+    public void printArrayUnsorted() throws IOException {
+        for(int i =0; movieArray.length > i; i++){
+            movieList.add(movieArray[i]);
+        }
+        for (String movie : movieList){
+            unsorted.getItems().add(movie);
+        }
 
     }
 
     @FXML
-    public void insertionSort(ActionEvent event) throws IOException {
+    public void printArraySorted(ActionEvent event) throws IOException {
+        int selectIndex = combo.getSelectionModel().getSelectedIndex();
+        if(selectIndex == 0){
+            callMerge();
+        }
+        if(selectIndex == 1){
+            insertionSort();
+        }
+        if (selectIndex == 2){
+
+        }
+        for(int i =0; movieArray.length > i; i++){
+            movieList.add(movieArray[i]);
+        }
+        for (String movie : movieList){
+            sorted.getItems().add(movie);
+        }
+
+    }
+
+    @FXML
+    public void insertionSort() throws IOException {
         int i;
         int j;
         String key;
@@ -111,7 +145,7 @@ public class HelloController {
     }
 
     @FXML
-    public void callMerge(ActionEvent event) throws IOException{
+    public void callMerge() throws IOException{
         mergeSort(movieArray, 0, movieArray.length);
     }
 
