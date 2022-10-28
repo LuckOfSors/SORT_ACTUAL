@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
 
 public class GetData {
@@ -13,4 +14,6 @@ public class GetData {
             .asString();
 
 
+    public GetData() throws UnirestException {
+    }
 }

@@ -12,17 +12,17 @@
          </font>
       </Label>
       <ChoiceBox fx:id="choiceBox" layoutX="225.0" layoutY="142.0" prefWidth="150.0" style="-fx-background-color: #5c5c5c;" />
-      <Button layoutX="253.0" layoutY="184.0" mnemonicParsing="false" onAction="#callMerge" prefHeight="31.0" prefWidth="93.0" style="-fx-background-color: #737373;" text="SORT" textFill="#c9c9c9">
+      <Button layoutX="253.0" layoutY="184.0" mnemonicParsing="false" onAction="#printArraySorted" prefHeight="31.0" prefWidth="93.0" style="-fx-background-color: #737373;" text="SORT" textFill="#c9c9c9">
          <font>
             <Font name="Tw Cen MT" size="23.0" />
          </font>
       </Button>
-      <TableView layoutX="8.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
+      <TableView id="unsorted" layoutX="8.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
         <columns>
           <TableColumn prefWidth="200" text="UNSORTED" />
         </columns>
       </TableView>
-      <TableView layoutX="386.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
+      <TableView id="sorted" layoutX="386.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
          <columns>
             <TableColumn prefWidth="200" text="SORTED" />
          </columns>
