@@ -195,10 +195,10 @@ public class HelloController {
     public static String[] Management() throws UnirestException {
         Scanner input = new Scanner(System.in);
         System.out.println("What movies would you like to search for: ");
-        String x = input.next();
+        String i = input.next();
         input.close();
 
-        HttpResponse<String> response = Unirest.get("https://movie-database-alternative.p.rapidapi.com/?s=" + x + "&r=json&page=1")
+        HttpResponse<String> response = Unirest.get("https://movie-database-alternative.p.rapidapi.com/?s=" + i + "&r=json&page=1")
                 .header("X-RapidAPI-Key", "0da6c9c507msh27d66d057973f0ep13289ajsnc1cd4d8defc8")
                 .header("X-RapidAPI-Host", "movie-database-alternative.p.rapidapi.com")
                 .asString();
@@ -231,7 +231,14 @@ public class HelloController {
                 }
             }
         }
-        return title;
+        String[] title2 = new String[title.length];
+        //removing null characters from string array
+        for(int x=0;x<title.length;x++) {
+            if(title[x]!= null){
+                title2[x] = title[x];
+            }
+        }
+        return title2;
     }
     public String[] Find(String data){
 
