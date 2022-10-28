@@ -82,6 +82,11 @@ public class HelloController {
     }
 
     @FXML
+    public void printArray(ActionEvent event) throws IOException {
+
+    }
+
+    @FXML
     public void insertionSort(ActionEvent event) throws IOException {
         int i;
         int j;
