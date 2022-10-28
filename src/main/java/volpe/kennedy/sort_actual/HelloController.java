@@ -37,11 +37,13 @@ public class HelloController {
 
 
     String[] movieArray = Management();
-
+    String[] movieArray = {"Norm Of the North", "Ender's Game", "Bill and Ted's"};
     @FXML
     private Label welcomeText;
 
+    @FXML
     private TableView unsorted;
+    @FXML
     private TableView sorted;
     private Stage stage;
     private ComboBox combo;
@@ -71,8 +73,8 @@ public class HelloController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-
         stage.show();
+        printArrayUnsorted();
 
     }
 
@@ -83,7 +85,7 @@ public class HelloController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        printArrayUnsorted();
+
         //hdudhgf
 
     }
