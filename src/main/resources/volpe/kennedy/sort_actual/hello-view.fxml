@@ -17,15 +17,15 @@
             <Font name="Tw Cen MT" size="23.0" />
          </font>
       </Button>
-      <TextFlow layoutX="386.0" layoutY="21.0" prefHeight="326.0" prefWidth="200.0" style="-fx-border-color: #c9c9c9;">
-         <children>
-            <ScrollBar opacity="0.68" orientation="VERTICAL" prefHeight="195.0" prefWidth="14.0" />
-         </children>
-      </TextFlow>
-      <TextFlow layoutX="14.0" layoutY="21.0" prefHeight="326.0" prefWidth="200.0" style="-fx-border-color: #c9c9c9;">
-         <children>
-            <ScrollBar opacity="0.68" orientation="VERTICAL" prefHeight="195.0" prefWidth="14.0" />
-         </children>
-      </TextFlow>
+      <TableView layoutX="8.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
+        <columns>
+          <TableColumn prefWidth="200" text="UNSORTED" />
+        </columns>
+      </TableView>
+      <TableView layoutX="386.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
+         <columns>
+            <TableColumn prefWidth="200" text="SORTED" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
