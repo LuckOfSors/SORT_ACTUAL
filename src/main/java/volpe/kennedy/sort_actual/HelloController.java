@@ -227,20 +227,12 @@ public class HelloController {
                     String name = String.valueOf(arr).trim();
                     title[z] = name;
                     System.out.println(title[z]);
-                    z++;
                     break;
 
                 }
             }
         }
-        String[] title2 = new String[title.length];
-        //removing null characters from string array
-        for(int x=0;x<title.length;x++) {
-            if(title[x]!= null){
-                title2[x] = title[x];
-            }
-        }
-        return title2;
+        return title;
     }
     public String[] Find(String data){
 
