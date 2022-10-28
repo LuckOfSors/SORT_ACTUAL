@@ -155,9 +155,9 @@ public class HelloController {
 
     public static String[] Management() throws UnirestException {
         Scanner input = new Scanner(System.in);
-                        System.out.println("What movies would you like to search for: ");
+        System.out.println("What movies would you like to search for: ");
         String x = input.next();
-                        input.close();
+        input.close();
 
         HttpResponse<String> response = Unirest.get("https://movie-database-alternative.p.rapidapi.com/?s=" + x + "&r=json&page=1")
                 .header("X-RapidAPI-Key", "0da6c9c507msh27d66d057973f0ep13289ajsnc1cd4d8defc8")
@@ -169,22 +169,31 @@ public class HelloController {
         JsonElement element = parser.parse(response.getBody().toString());
         String clean = gson.toJson(element);
 
-        Manage parse = new Manage();
+        HelloController parse = new HelloController();
         String[] data = parse.Find(clean);
+        String[] title= new String[data.length];
 
-        for(int z = 0;z<data.length;z++){
-            String temp = data[z];
-            if (temp[z] == '"') {
+        for(int z = 0; z < data.length; z++){
+            char[] temp = data[z].toCharArray();
+            char[] arr = new char[data[z].length()];
+            for(int y= 0;y<temp.length;y++){
+                if(temp[y]=='T'){
+                    while(temp[y]!=','){
+                        arr[y] = temp[y];
+                        y++;
 
+                    }
+                    String name = String.valueOf(arr).trim();
+                    title[z] = name;
+                    System.out.println(title[z]);
+                    z++;
+                    break;
 
+                }
             }
-
         }
+        return title;
     }
-
-
-
-
     public String[] Find(String data){
 
         //converting json into char array
