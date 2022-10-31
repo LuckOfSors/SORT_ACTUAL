@@ -16,10 +16,6 @@ public class HelloApplication extends Application {
         stage.setTitle("Search");
         stage.setScene(scene);
         stage.show();
-
-
-
-
     }
 
 

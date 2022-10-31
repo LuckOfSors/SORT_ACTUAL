@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4e4e4e;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="volpe.kennedy.sort_actual.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #4e4e4e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="volpe.kennedy.sort_actual.HelloController">
    <children>
       <Label layoutX="246.0" layoutY="111.0" prefHeight="31.0" prefWidth="108.0" style="-fx-background-color: #4e4e4e;" text="SORT USING:" textFill="#c9c9c9">
          <font>
@@ -19,12 +23,12 @@
       </Button>
       <TableView id="unsorted" fx:id="unsorted" layoutX="8.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
         <columns>
-          <TableColumn prefWidth="200" text="UNSORTED" />
+          <TableColumn fx:id="unsortedColumn" prefWidth="200" text="UNSORTED" />
         </columns>
       </TableView>
       <TableView id="sorted" fx:id="sorted" layoutX="386.0" layoutY="84.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #4a4a4a;">
          <columns>
-            <TableColumn prefWidth="200" text="SORTED" />
+            <TableColumn fx:id="sortedColumn" prefWidth="200" text="SORTED" />
          </columns>
       </TableView>
    </children>
