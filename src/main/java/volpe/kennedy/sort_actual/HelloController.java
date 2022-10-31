@@ -32,9 +32,8 @@ public class HelloController implements Initializable {
 
     List<String> movieList = new ArrayList<String>();
 
-
-    String[] movieArray = Management();
-    //String[] movieArray = {"Norm Of the North", "Ender's Game", "Bill and Ted's"};
+    private static String query;
+    private String[] movieArray = {};
     @FXML
     private Label welcomeText;
     @FXML
@@ -46,7 +45,7 @@ public class HelloController implements Initializable {
     @FXML
     private TableColumn<String, String> sortedColumn;
     @FXML
-    private static TextField textField;
+    private TextField textFeld;
     private Stage stage;
     private ComboBox combo;
 
@@ -58,19 +57,16 @@ public class HelloController implements Initializable {
 
     private ChoiceBox choiceBox;
 
-    public HelloController() throws UnirestException {
-    }
 
     @FXML
     public void switchtoSort(ActionEvent event) throws IOException, UnirestException {
-
+        query = textFeld.getText();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
         Parent root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        //choiceBox = new ChoiceBox<>();
         ((HelloController) loader.getController()).printArrayUnsorted();
     }
 
@@ -84,14 +80,10 @@ public class HelloController implements Initializable {
 
     }
 
-    public void test(ActionEvent event) throws IOException {
-
-        System.out.println(textField.getText());
-
-    }
 
     @FXML
-    public void printArrayUnsorted() throws IOException {
+    public void printArrayUnsorted() throws IOException, UnirestException {
+        movieArray = Management(query);
         for (int i = 0; movieArray.length > i; i++) {
             movieList.add(movieArray[i]);
         }
@@ -121,7 +113,7 @@ public class HelloController implements Initializable {
 //            sorted.getItems().add(movie);
 //        }
         this.unsorted.getItems().clear();
-        System.out.print(movieList);
+
         this.sorted.getItems().clear();
 
         String[] newUnsorted = new String[movieArray.length];
@@ -137,7 +129,6 @@ public class HelloController implements Initializable {
         int j;
         String key;
 
-        System.out.println(Arrays.toString(movieArray));
 
         for (j = 1; j < movieArray.length; j++) {
             key = movieArray[j];
@@ -150,9 +141,9 @@ public class HelloController implements Initializable {
                 i--;
             }
             movieArray[i + 1] = key;
-            System.out.println(Arrays.toString(movieArray));
+
         }
-        System.out.println(Arrays.toString(movieArray));
+
     }
 
     @FXML
@@ -224,12 +215,12 @@ public class HelloController implements Initializable {
     }
 
 
-    public static String[] Management() throws UnirestException {
+    public static String[] Management(String search) throws UnirestException {
 //        Scanner input = new Scanner(System.in);
 //        System.out.println("What movies would you like to search for: ");
 //        String i = input.next();
 //        input.close();
-        String i = "face";
+        String i = search;
 
         HttpResponse<String> response = Unirest.get("https://movie-database-alternative.p.rapidapi.com/?s=" + i + "&r=json&page=1")
                 .header("X-RapidAPI-Key", "0da6c9c507msh27d66d057973f0ep13289ajsnc1cd4d8defc8")
@@ -249,7 +240,8 @@ public class HelloController implements Initializable {
             char[] temp = data[z].toCharArray();
             char[] arr = new char[data[z].length()];
             for (int y = 0; y < temp.length; y++) {
-                if (temp[y] == 'T') {
+                if (temp[y] == ':') {
+                    y++;
                     while (temp[y] != ',') {
                         arr[y] = temp[y];
                         y++;
@@ -257,12 +249,12 @@ public class HelloController implements Initializable {
                     }
                     String name = String.valueOf(arr).trim();
                     title[z] = name;
-                    System.out.println(title[z]);
                     break;
 
                 }
             }
         }
+
         return title;
     }
 
@@ -321,7 +313,6 @@ public class HelloController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(this.unsorted);
 
         if (choiceBox != null) {
             choiceBox.setItems(sortList);

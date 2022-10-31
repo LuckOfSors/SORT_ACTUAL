@@ -21,7 +21,7 @@
             <Font name="Tahoma Bold" size="60.0" />
          </font>
       </Label>
-      <TextField fx:id="textField" alignment="CENTER" layoutX="79.0" layoutY="286.0" prefHeight="82.0" prefWidth="313.0" style="-fx-background-color: #4e4e4e; -fx-border-color: #c9c9c9;">
+      <TextField fx:id="textFeld" alignment="CENTER" layoutX="79.0" layoutY="286.0" prefHeight="82.0" prefWidth="313.0" style="-fx-background-color: #4e4e4e; -fx-border-color: #c9c9c9;">
          <font>
             <Font name="JetBrains Mono Medium" size="40.0" />
          </font>
